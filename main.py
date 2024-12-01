@@ -113,3 +113,6 @@ print(x.split())
 # W nawiasie podajemy, GDZIE chcemy podzielić zdanie. Jeśli nawias byłby pusty, rodzieliłoby nam każde słowo
 x = "Hallo Welt, ich lerne Python"
 print(x.split(","))
+
+
+# DODAĆ FIND FUNKCJE
