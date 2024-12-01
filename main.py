@@ -84,8 +84,6 @@ x = "H" + x[1:]
 print(x)
 # CHCEMY WYŚWIETLIĆ HALLO 10 RAZY
 # 1 sposób -> po prostu wypisanie
-print(HalloHalloHalloHalloHalloHalloHalloHalloHalloHallo)
-
 # lub
 
 x = "Hallo"
@@ -94,3 +92,24 @@ print(x + x + x + x + x + x + x + x + x + x)
 # lub
 x = "Hallo"
 print(x * 10)
+
+
+# FUNKTIONEN FUER STRINGS
+
+# U.1 Chcemy żeby wszystko było dużymy literami
+
+x = "Hallo Welt"
+print(x.upper())
+
+#JAK CHCEMY małymi -> lower
+x = "Hallo Welt"
+print(x.lower())
+
+# U.2 Chcemy rozdzielić słowa SPLIT (wyjdzie nam: ['Hallo', 'Welt'])
+x = "Hallo Welt"
+print(x.split())
+
+# Teraz chcemy rozdzielić zdanie, lecz nie na poszczególne słowa, lecz części. Chcemy otrzymać: ['Hallo Welt', ' ich lerne Python']
+# W nawiasie podajemy, GDZIE chcemy podzielić zdanie. Jeśli nawias byłby pusty, rodzieliłoby nam każde słowo
+x = "Hallo Welt, ich lerne Python"
+print(x.split(","))
