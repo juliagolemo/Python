@@ -63,3 +63,34 @@ print(x[6:])
 x = 'Hallo Welt'
 print(x[:5]) 
 
+# FUNKTION len() - einfache Funktion zum Zaelen der Bestandteile eines Objekts
+#zawsze używamy do tego print. W "srodkowym nawiasie, piszemy CO checmy policzyć"
+y = "Dieser Satz ist recht lang. Wie lang ist er?"
+print(len(y))
+
+# wir koennen das auch so machen
+# WICHTIG: Strings werden mit + verkettet, Elemente verschiedener Datentypen mit Komma
+
+print("Der String mit der Variable y ist", len(y), "Zeichen lang.")
+
+# Wie kann man bei Strings Buchstaben veraendern?
+# Jest problematycznie, gdzie chcemy zmienić dużą literę na małą i na odwrót
+# Chcemy to H połączyć z dalszą częścią stringa. CZĘŚCIĄ. Dlatego dajemy x[]
+x= "hallo"
+
+x = "H" + x[1:]
+# 1 dlatego, bo "a" ma liczbę 1(bo zaczynamy od 0)
+# po : nie piszemy nic, bo jedziemy do końca
+print(x)
+# CHCEMY WYŚWIETLIĆ HALLO 10 RAZY
+# 1 sposób -> po prostu wypisanie
+print(HalloHalloHalloHalloHalloHalloHalloHalloHalloHallo)
+
+# lub
+
+x = "Hallo"
+print(x + x + x + x + x + x + x + x + x + x)
+
+# lub
+x = "Hallo"
+print(x * 10)
