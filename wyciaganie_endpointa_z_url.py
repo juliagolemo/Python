@@ -58,16 +58,20 @@ def wyciaganie_endpointa_z_url(url):
        Ostatni segment ścieżki URL, czyli nazwę endpointu, bez parametrów zapytania.
     """
     split_url = url.split('/')
-    print(f'{split_url=}')
+    print(f'{split_url=}')  # ['http:', '', 'sklep', 'napoje', 'piwa?marka=tyskie']
+
     ostatni_element_url = split_url[-1]
-    print(f'{ostatni_element_url=}')
+    print(f'{ostatni_element_url=}')  # 'piwa?marka=tyskie'
+
     split_ostatni_element_url = ostatni_element_url.split('?')
-    print(f'{split_ostatni_element_url=}')
+    print(f'{split_ostatni_element_url=}')  # ['piwa', 'marka=tyskie']
+
     nazwa_endpointa = split_ostatni_element_url[0]
-    print(f'{nazwa_endpointa=}')
+    print(f'{nazwa_endpointa=}') #  'piwa'
+
     return nazwa_endpointa
 
 
 if __name__ == '__main__':
-    url = 'https://www.youtube.com/results?search_query=python+auif+deutch'
+    url = 'http://sklep/napoje/piwa?marka=tyskie'
     print(wyciaganie_endpointa_z_url(url=url))
