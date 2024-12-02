@@ -1,3 +1,13 @@
+#=========================================Slicing==================================================
+# 
+# sequence[start:stop:step]
+# 
+# start - indeks, od którego zaczynamy wycinanie (włącznie). Domyślnie 0.
+# stop - indeks, na którym kończymy wycinanie (ale go nie uwzględniamy). Domyślnie długość sekwencji.
+# step - krok, z jakim wybieramy elementy. Domyślnie 1.
+
+
+
 def drop_n_th_element(s: str, n: int) -> str:
     """
     Usuwa n-ty element z podanego ciągu znaków.
