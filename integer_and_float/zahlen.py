@@ -22,3 +22,22 @@ print(11 % 3)
 # POTEGI
 print(10 ** 2)
 print(10 ** 0.5)
+
+#NUTZEREINGABE - werden in Python mit input() realisiert
+# Wyswietla sie nam to zdanie w terminalu
+x = input("Wie ist dein Name?")
+# Zeby proces byl "dokonczon", dopisujemy odpowiedz w TERMINALU np. Wie ist dein Name?Julia
+
+# Co jesli chcemy wyswietlic x? Piszemy w terminalu imie, odpalami i wyswietla sie samo imie MI SIE NIE WYSWIETLA!!!!
+x = input("Wie ist dein Name?")
+print(x)
+
+# Wyswietla sie Hallo Julia - MI SIE NIE WYSWIETLA!!!!
+print("Hallo " + x)
+
+y = input("Wie viel ist dein Ausgangsgehalt? ") 
+x = y * 1.10
+print(x)
+
+# 1.10, weil es ist die 10prozentige Gehaltserhoeung hier verarbeitet
+# to samo tutaj - wpisujac liczbe w terminalu - nie dziala!!!
