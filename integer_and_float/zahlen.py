@@ -28,11 +28,11 @@ print(10 ** 0.5)
 x = input("Wie ist dein Name?")
 # Zeby proces byl "dokonczon", dopisujemy odpowiedz w TERMINALU np. Wie ist dein Name?Julia
 
-# Co jesli chcemy wyswietlic x? Piszemy w terminalu imie, odpalami i wyswietla sie samo imie MI SIE NIE WYSWIETLA!!!!
+# Co jesli chcemy wyswietlic x? Piszemy w terminalu imie, odpalami i wyswietla sie samo imie 
 x = input("Wie ist dein Name?")
 print(x)
 
-# Wyswietla sie Hallo Julia - MI SIE NIE WYSWIETLA!!!!
+# Wyswietla sie Hallo Julia
 print("Hallo " + x)
 
 y = input("Wie viel ist dein Ausgangsgehalt? ") 
@@ -41,3 +41,10 @@ print(x)
 
 # 1.10, weil es ist die 10prozentige Gehaltserhoeung hier verarbeitet
 # to samo tutaj - wpisujac liczbe w terminalu - nie dziala!!!
+
+#Projekt - Waehrungs-Umrechner
+# float, bo moga byc liczby po przecinku
+# baht to tajska waluta
+euro = float(input("Wie viel Euro hast du? "))
+baht = euro * 38.06
+print("Super! Deine ", euro, " Euro sind ", baht, " Baht wert.")
