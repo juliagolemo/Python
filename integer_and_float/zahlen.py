@@ -4,3 +4,21 @@
 
 print(10 / 2)
 print(type(10))
+print(type(5.0))
+print(type(10 / 2))
+
+# DIVISION MIT REST (sprawdzamy czy równanie ma reszte)
+# Beispiel: 11/2 = 2 Rest 1
+# (11 % 2) -> 1
+
+# Otrzymujemy 3.3333333333333335
+print(10 / 3)
+# Wychodzi, ze ma reszte 1
+print(10 % 3) 
+
+print(10 / 2)
+print(11 % 3)
+
+# POTEGI
+print(10 ** 2)
+print(10 ** 0.5)
