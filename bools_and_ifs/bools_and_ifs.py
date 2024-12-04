@@ -56,5 +56,3 @@ elif streckeInKm == 3:
     print("Nimm die Laufschuhe mit!")
 else:
     print("Nimm das Fahrrad")
-
-# SKONCZYC UEBUNG!!!!!!!!!!!!!!
