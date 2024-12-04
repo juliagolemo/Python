@@ -56,3 +56,20 @@ elif streckeInKm == 3:
     print("Nimm die Laufschuhe mit!")
 else:
     print("Nimm das Fahrrad")
+
+# Projekt Kinotickets
+
+# int dlatego zeby powstala liczba. Mamy tu 3 opcje: seniorzy, dorosli i dzieci.
+# 1 warunek - osoby powyzej 65. 2 warunek - oosby majace wiecej niz 18, ale mniej niz 65, bo na to juz jest warunek
+# 3 warunek - dzieci, do 18 roku zycia. Tu juz nie musimy pisac rowniania, bo kazdy przedzial wiekowy oprocz tego do 18 zostal okreslony, wiec tylko ten zostaje
+#Cena dla seniorow to 7.50 Euro
+
+alter = int(input("Wie alt bist du?"))
+if > 65:
+    print(7.5)
+elif alter >= 18:
+    print(10)
+else:
+    print(5)
+
+# Wyswieltanam sie w termunalu pytanie Wie alt bist du? Wpisujei pojawia nam sie cena
