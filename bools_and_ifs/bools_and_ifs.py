@@ -43,3 +43,16 @@ if streckeInKm < 3:
     print("Lauf doch zu Fuß!")
 else:
     print("Nimm das Fahrrad")
+
+# Może być jeszcze inna opcja, którą byśmy chcieli dodać, takie jakby inne else.
+# Nazywa się elif i MUSI stać międzi if, a else
+
+# Otrzymujemy Die Strecke ist lang. Nimm die Laufschuhe mit!
+streckeInKm = 3
+if streckeInKm < 3:
+    print("Lauf doch zu Fuß!")
+elif streckeInKm == 3:
+    print("Die Strecke ist lang.")
+    print("Nimm die Laufschuhe mit!")
+else:
+    print("Nimm das Fahrrad")
