@@ -34,3 +34,12 @@ if streckeInKm < 3:
 streckeInKm = 5
 if streckeInKm < 3:
     print("Lauf doch zu Fuß!")
+else:
+    print("Nimm das Fahrrad")
+
+# Tu warunek nie jest spełniony, ale dopisaliśmy else, że jeśli jest False, to wyświetla mu się polecenie żeby wziął rower
+streckeInKm = 5
+if streckeInKm < 3:
+    print("Lauf doch zu Fuß!")
+else:
+    print("Nimm das Fahrrad")
