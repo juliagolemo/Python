@@ -40,7 +40,7 @@ x = y * 1.10
 print(x)
 
 # 1.10, weil es ist die 10prozentige Gehaltserhoeung hier verarbeitet
-# to samo tutaj - wpisujac liczbe w terminalu - nie dziala!!!
+# to samo tutaj - wpisujac liczbe w terminalu
 
 #Projekt - Waehrungs-Umrechner
 # float, bo moga byc liczby po przecinku

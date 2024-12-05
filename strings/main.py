@@ -114,5 +114,3 @@ print(x.split())
 x = "Hallo Welt, ich lerne Python"
 print(x.split(","))
 
-
-# DODAĆ FIND FUNKCJE
