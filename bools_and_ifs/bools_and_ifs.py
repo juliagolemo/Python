@@ -65,7 +65,7 @@ else:
 #Cena dla seniorow to 7.50 Euro
 
 alter = int(input("Wie alt bist du?"))
-if > 65:
+if alter > 65:
     print(7.5)
 elif alter >= 18:
     print(10)

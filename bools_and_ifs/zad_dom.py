@@ -19,11 +19,10 @@ def is_palindrome(s: str) -> bool:
         >>> is_palindrome("AmanaplanacanalPanama")
         True
     """
-    # YOUR CODE
-    # HERE...
+    odwrocony_pomniejszony = s[::-1].lower()
+    pomniejszony_oryginal = s.lower()
+    return pomniejszony_oryginal == odwrocony_pomniejszony
     
-
-
 
 def test_is_palindrome():
     """
