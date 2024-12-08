@@ -5,8 +5,18 @@
         "vscode": {
             "extensions": [
                 "ms-python.python",
-                "ms-python.vscode-pylance"
-            ]
+                "ms-python.vscode-pylance",
+                // Dodać jak bedziemy pracować na notebookach
+                // "ms-toolsai.jupyter",
+                "oderwat.indent-rainbow",
+                "ms-python.black-formatter"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "python.formatting.provider": "black",
+                "files.trimTrailingWhitespace": true,
+                "files.insertFinalNewline": true
+            }
         }
     },
     "postCreateCommand": "pip3 install -r requirements.txt"
