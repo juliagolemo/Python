@@ -1,6 +1,6 @@
 counter = 0
 
-# "Dopoki warunek petli while juest prawdziwy, powtarza to, co jest w petli"
+# "Dopoki warunek petli while jest prawdziwy, powtarza to, co jest w petli"
 while counter <= 5:
     print(counter)
     counter += 1
@@ -12,7 +12,8 @@ entscheidung = "yes"
 
 while entscheidung == "yes":
     einkaufsliste.append(input("Was moechtest du deiner Liste hinzufuegen? "))
-    entscheidung = input("Moechtest du weitere Artikel hinzufuegen ( yes / no ) ")
+    entscheidung = input(
+        "Moechtest du weitere Artikel hinzufuegen ( yes / no ) ")
     print(einkaufsliste)
 
 # Projekt
@@ -22,11 +23,12 @@ einkaufsliste = []
 
 # Endlos-schleife mit BREAK (statt Bedingung am Anfang nur while True, läuft endlos)
 while True:
-    aktion = input("Möchtest du einen Artikel hinzufügen/entfernen oder die Liste anzeigen? (hinzufügen / entfernen / anzeigen / beenden)")
+    aktion = input(
+        "Möchtest du einen Artikel hinzufügen/entfernen oder die Liste anzeigen? (hinzufügen / entfernen / anzeigen / beenden)")
 
     # hinzufügen
     if aktion == "hinzufügen":
-        atikel = input("Welchen Artikel möchtest du hinzufügen? ")
+        artikel = input("Welchen Artikel möchtest du hinzufügen? ")
         einkaufsliste.append(artikel)
         print("Artikel wurde hinzugefügt")
 
@@ -46,10 +48,7 @@ while True:
     elif aktion == "beenden":
         print("Einkaufsliste beendet")
         break
+    else:
+        print("Du musst das schon richtig eingeben.")
 
-
-2h 30 min
-
-
-
-
+print(einkaufsliste)
