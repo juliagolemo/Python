@@ -7,7 +7,11 @@
 # Przykład użycia funkcji randint() znajduje się tutaj:
 # https://www.w3schools.com/python/ref_random_randint.asp
 
-liczba = randint(1900, 2025)
-print("Wybrałam liczbę pomiędzy 1900, a 2025.")
+import random
+
 while True:
-    proba = int(input("Zgadnij moją liczbę: "))
+    liczba = random.randint(1900, 2025)
+    print(liczba)
+    break
+
+
