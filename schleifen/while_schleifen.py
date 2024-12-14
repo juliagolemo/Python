@@ -1,3 +1,4 @@
+from random import randint
 counter = 0
 
 # "Dopoki warunek petli while jest prawdziwy, powtarza to, co jest w petli"
@@ -34,7 +35,7 @@ while True:
 
     # löschen
     elif aktion == "entfernen":
-        artikel = input("Welchen Artikel möchtest du hinzufügen? ")
+        artikel = input("Welchen Artikel möchtest du entfernen? ")
         if artikel in einkaufsliste:
             einkaufsliste.remove(artikel)
             print("Artikel wurde gelöscht")
@@ -54,8 +55,7 @@ while True:
 print(einkaufsliste)
 
 # Übung
-from random import randint
-zahl = randint(1,100)
+zahl = randint(1, 100)
 
 print("Hey ich habe mir eine Zahl zwischen 1 und 100 ausgedacht.")
 while True:
