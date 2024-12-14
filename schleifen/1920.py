@@ -12,6 +12,9 @@ import random
 while True:
     liczba = random.randint(1900, 2025)
     print(liczba)
-    break
+
+    if liczba == 1920:
+        print("Ino Ruch!!!")
+        break
 
 
