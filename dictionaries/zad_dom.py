@@ -32,7 +32,7 @@ def get_request_api(batch_id: int) -> dict[str, Any]:
         {'batch': ["delfin", "rekin", "ośmiornica", "meduza", "krewetka"], 'next': None}
     """
     batch = database_api.get(batch_id)
-    next_bach_id = batch_id + 1 if batch_id + 1 in database_api else None
+    next_bach_id = batch_id + 1 if batch_id + 1 in database_api.keys() else None
     return {
         'batch': batch,
         'next': next_bach_id
