@@ -42,6 +42,10 @@ einkauft_dickt["Gewicht"] = 10
 einkauft_dickt.pop("Ablaufdatum")
 print(einkauft_dickt)
 
+for i in einkauft_dickt:
+    print(i)
+    print(einkauft_dickt[i])
+
 
 
 
