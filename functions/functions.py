@@ -21,3 +21,13 @@ begruessung()
 # To po co pisac funkcje, skoro mozna print i na to samo wyjdzie?
 # Po to zeby szybciej wyswietlac zawartosc - czyli nie musimy calego dlugiego print za kazdym razem pisac
 # Wystraczy begruessung() i mamy
+
+def begruessung(name):
+    print("Hallo", name, ", nett dich kennenzulernen!")
+begruessung("Julia")
+begruessung("Sabine")
+begruessung("Anna")
+
+def begruessung(name, alter):
+    print("Hallo", name, ", nett dich kennenzulernen! Du bist", alter, "Jahre alt.")
+begruessung("Julia", 23)
