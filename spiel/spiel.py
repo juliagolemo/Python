@@ -73,7 +73,6 @@ def spiele_tic_tac_toe():
 
 spiele_tic_tac_toe()
 
-
 # range() beschreibt eine Zaehlsequenz bis zum angegebenem Argument
 # um eine Codezeile auf 2 dargestellte Teilen umzubrechen, wird ein Backlash (\) gesetzt
 
