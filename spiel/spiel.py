@@ -1,4 +1,3 @@
-# Kolko i krzyzyk
 # 1. Spielbrett erstellen
 def erstelle_brett():
     brett = []
