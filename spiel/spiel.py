@@ -14,6 +14,14 @@ def drucke_brett(brett):
         print("|".join(zeile))
         print("------")
 
+# 3. Zug machen
+def mache_zug(brett, spieler, zeile, spalte):
+    if brett[zeile][spalte] == " ":
+        brett[zeile][spalte] = spieler
+        return True
+    else:
+        return False
+
 def spiele_tic_tac_toe():
     brett = erstelle_brett
     aktueller_spieler = "X"
