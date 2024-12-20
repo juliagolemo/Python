@@ -54,3 +54,5 @@ auto2.begruessung()
 
 auto1.fahren()
 auto2.fahren()
+
+5.06
