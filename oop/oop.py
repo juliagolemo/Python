@@ -24,11 +24,14 @@ class Auto():
 auto1 = Auto()
 print(auto1.raeder)
 
-# hcemy zmienic drzwi, bo nie kazde auto ma 2 drzwi
+# chemy zmienic drzwi, bo nie kazde auto ma 2 drzwi
 # Zawsze musi byc to self!!
 
 
 class Auto():
+
+    zmienna_klasowa = "jestem u wszystkich taka sama"
+
     def __init__(self, marke, modell, jahr, raeder, tueren, ps):
         self.marke = marke
         self.modell = modell
@@ -39,20 +42,40 @@ class Auto():
 
     def begruessung(self):
         print("Hallo, ich bin" + self.marke)
+
     def fahren(self):
         print("Brmrm" * int(self.ps/10))
 
-auto1 = Auto(marke="Volkswagen", modell="Golf", jahr=2019, raeder=4, tueren=4, ps=100)
-auto2 = Auto(marke="Toyota", modell="Avensis", jahr=2015, raeder=4, tueren=2, ps=150)
-print(auto1.marke)
-print(auto2.marke)
 
+auto1 = Auto(marke="Volkswagen", modell="Golf",
+             jahr=2019, raeder=4, tueren=4, ps=100)
+auto2 = Auto(marke="Toyota", modell="Avensis",
+             jahr=2015, raeder=4, tueren=2, ps=150)
+
+print("=====INSTANCE VARIABLE=======")
+print("auto1", auto1.marke)
+print("auto2", auto2.marke)
+
+auto1.marke = "nowa marka"
+
+print("auto1", auto1.marke)
+print("auto2", auto2.marke)
+
+print("=====CLASS VARIABLE=======")
+print("auto1", auto1.zmienna_klasowa)
+print("auto2", auto2.zmienna_klasowa)
+Auto.zmienna_klasowa = "dalej jestem taka sama u wszystkich"
+print("auto1", auto1.zmienna_klasowa)
+print("auto2", auto2.zmienna_klasowa)
 
 auto1.begruessung()
 auto2.begruessung()
 
-
 auto1.fahren()
 auto2.fahren()
 
+# W klasie Auto jest coś, co nazywa się metodą __init__. To taki startowy element, który mówi, jakie dane każdy samochód musi mieć, żeby mógł istnieć.
+# np.marke, modell
+# Każdy z tych elementów jest zapisany jako cecha obiektu samochodu (używamy self, żeby powiedzieć "to należy do konkretnego auta")
+# self uzywam tylko w "przepisie"
 5.06
