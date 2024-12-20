@@ -29,9 +29,15 @@ print(auto1.raeder)
 
 
 class Auto():
-    def __init__(self, marke, modell, baujahr, raeder, tueren):
+    def __init__(self, marke, modell, jahr, raeder, tueren):
         self.marke = marke
         self.modell = modell
-        self.jakr = jahr
+        self.jahr = jahr
         self.raeder = 4
         self.tueren = tueren
+
+
+auto1 = Auto(marke="Volkswagen", modell="Golf", jahr=2019, raeder=4, tueren=4)
+auto2 = Auto(marke="Toyota", modell="Avensis", jahr=2015, raeder=4, tueren=2)
+print(auto1.marke)
+print(auto2.marke)
