@@ -78,4 +78,5 @@ auto2.fahren()
 # np.marke, modell
 # Każdy z tych elementów jest zapisany jako cecha obiektu samochodu (używamy self, żeby powiedzieć "to należy do konkretnego auta")
 # self uzywam tylko w "przepisie"
+# init to jakby funckaj, ktora tworzy cos nowego (nowa instancje klasy) np. nowy samochod
 5.06
