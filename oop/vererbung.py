@@ -15,6 +15,7 @@ class Auto():
     def fahren(self):
         print("Brmrm" * int(self.ps/10))
 
+# fahren: Symuluje "dźwięk jazdy" w zależności od mocy samochodu, int bo liczba calkowita
 
 class Sportwagen(Auto):
     def __init__(self, marke, modell, jahr, raeder, tueren, ps, folierung):
@@ -30,6 +31,8 @@ sw1 = Sportwagen(marke="Seat", modell="Ibiza", jahr=2020, raeder=4, tueren=2, ps
 print(sw1.modell)
 print(sw1.turbo)
 
-
-
+# Dziedziczenie: Klasa Sportwagen dziedziczy wszystkie cechy i funkcje klasy Auto, ale moge jeszcze dodac jakies
+# super().__init__: To wywołuje konstruktor klasy Auto, aby ustawić właściwości odziedziczone, takie jak marke, modell, jahr, itd.
+# super() to sposób na dostęp do klasy nadrzędnej (bazowej) z poziomu klasy podrzędnej.
+# Jeśli klasa podrzędna (Sportwagen) dziedziczy po klasie nadrzędnej (Auto), to super().__init__() uruchamia konstruktor klasy nadrzędnej
 # Attribute vererben: super().__init__(...)
