@@ -74,3 +74,5 @@ def fetch_all_animals():
     batch_id = 1
     while batch_id:
         print("batch", batch_id)
+    data = get_request_api(batch_id)
+    print("Moje dane:", data)
