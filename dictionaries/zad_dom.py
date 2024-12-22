@@ -1,4 +1,4 @@
-# Chcemy pobrać pewne listę z API ale te API nie pozwala na zwracanie listy dłuższej niż 5 elementów
+# Chcemy pobrać pewna listę z API ale te API nie pozwala na zwracanie listy dłuższej niż 5 elementów
 # Zadanie polega na tym żeby zawsze móc pobrać całą listę zwirzątek
 
 from typing import Any
@@ -65,3 +65,12 @@ if __name__ == '__main__':
     # Wywołanie funkcji i wyświetlenie pełnej listy zwierząt
     animals = fetch_all_animals()
     print("Pełna lista zwierząt:", animals)
+
+
+# batch - podzielona, wieksza lista
+
+def fetch_all_animals():
+    all_animals = []
+    batch_id = 1
+    while batch_id:
+        print("batch", batch_id)
