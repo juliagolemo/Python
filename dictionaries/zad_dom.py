@@ -55,24 +55,24 @@ def fetch_all_animals() -> list[str]:
     """
     all_animals = []
 
-    # Your code here!
-    # ...
+    batch_id = 1
+
+    while batch_id:
+        print("batch", batch_id)
+        data = get_request_api(batch_id)
+        print("Moje dane:", data)
+        # trzeba jakoś zatrzymać tą pętle zmieniajac batch_id w tej pętli na np. None
+        # batch_id = ...
 
     return all_animals
+
+# Batch to porcja danych, będąca częścią większej listy,
+# podzielonej na mniejsze grupy w celu bardziej efektywnego przetwarzania.
+# Cała lista może składać się z wielu batchy, co umożliwia równoczesną pracę nad różnymi
+# fragmentami danych lub wykonywanie operacji w sposób uporządkowany i zoptymalizowany.
 
 
 if __name__ == '__main__':
     # Wywołanie funkcji i wyświetlenie pełnej listy zwierząt
     animals = fetch_all_animals()
     print("Pełna lista zwierząt:", animals)
-
-
-# batch - podzielona, wieksza lista
-
-def fetch_all_animals():
-    all_animals = []
-    batch_id = 1
-    while batch_id:
-        print("batch", batch_id)
-    data = get_request_api(batch_id)
-    print("Moje dane:", data)
