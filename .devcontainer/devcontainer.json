@@ -7,7 +7,7 @@
                 "ms-python.python",
                 "ms-python.vscode-pylance",
                 // Dodać jak bedziemy pracować na notebookach
-                // "ms-toolsai.jupyter",
+                "ms-toolsai.jupyter",
                 "oderwat.indent-rainbow",
                 "ms-python.black-formatter"
             ],
