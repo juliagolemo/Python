@@ -30,3 +30,4 @@ class Zwierze_Latajace(Zwierze_Ladowe):
     def lec(self):
         szyb_lotu = (self.waga / 5) + (self.wzrost / 2)
         return f"{self.imie} leci z prędkością {szyb_lotu:.2f} km/h"
+    .
