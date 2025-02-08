@@ -58,6 +58,39 @@ print(krolik)
 print(pies.biegnij())
 print(krolik.biegnij())
 
+class Kot(Zwierze_Ladowe):
+    def daj_glos(self):
+        return "Miau"
+
+
+kot = Kot("Szeszyr", 9, 5, 17)
+print(kot.daj_glos())
+print(kot)
+
+print(kot.biegnij())
+
+class Pelikan(Zwierze_Latajace):
+    def daj_glos(self):
+        return "Blyyyyb"
+
+    def lec(self):
+        szyb_lotu = (self.waga / 5) + (self.wzrost / 2)
+        return f"{self.imie} leci z prędkością {szyb_lotu:.2f} km/h"
+
+pelikan = Pelikan("Renia", 3, 8, 100, 1.9)
+print(pelikan.lec())
+print(pelikan)
+
+print(pelikan.lec())
+
+class Sikorka(Zwierze_Latajace):
+    def daj_glos(self):
+        return "Ćwir"
+
+sikorka = Sikorka("Sikorinda", 1, 0.11, 11.5, 21)
+print(sikorka.lec())
+print(sikorka)
+
 class ZOO:
     def __init__(self):
         self.zwierzeta = []
