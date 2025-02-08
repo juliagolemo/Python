@@ -87,7 +87,7 @@ class Sikorka(Zwierze_Latajace):
     def daj_glos(self):
         return "Ćwir"
 
-sikorka = Sikorka("Sikorinda", 1, 0.11, 11.5, 21)
+sikorka = Sikorka("Sikorinda", 1, 0.11, 11.5, 21.0)
 print(sikorka.lec())
 print(sikorka)
 
@@ -95,4 +95,18 @@ class ZOO:
     def __init__(self):
         self.zwierzeta = []
 
+    def dodaj_zwierze(self, zwierze: Zwierze):
+        self.zwierzeta.append(zwierze)
 
+
+    def pokaz_zwierzeta(self):
+        if not self.zwierzeta:
+            return "Brak zwierząt"
+        return "\n".join(str(zwierze) for zwierze in self.zwierzeta)
+
+moje_zoo = ZOO()
+
+moje_zoo.dodaj_zwierze(pies)
+moje_zoo.dodaj_zwierze(kot)
+
+print(moje_zoo.pokaz_zwierzeta())
