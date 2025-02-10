@@ -95,7 +95,6 @@ moje_zoo.dodaj_zwierze(sikorka)
 print("\nZwierzęta w zoo:")
 print(moje_zoo.pokaz_zwierzeta())
 
-
 from abc import ABC, abstractmethod
 
 class Pracownik(ABC):
@@ -136,3 +135,40 @@ opiekun = OpiekunZwierzat("Julian", "Golemowski")
 sprzatacz = Sprzatacz("Kazimierz", "Nowak")
 kasjer = Kasjer("Kazia", "Wiśniewska")
 
+class ZOO:
+    def __init__(self):
+        self.zwierzeta = []
+        self.pracownicy = []
+
+    def dodaj_zwierze(self, zwierze):
+        self.zwierzeta.append(zwierze)
+
+    def dodaj_pracownika(self, pracownik):
+        self.pracownicy.append(pracownik)
+
+    def pokaz_zwierzeta(self):
+        if not self.zwierzeta:
+            return "Brak zwierząt"
+        return "\n".join(str(zwierze) for zwierze in self.zwierzeta)
+
+    def pokaz_pracownikow(self):
+        if not self.pracownicy:
+            return "Brak pracowników"
+        return "\n".join(str(pracownik) for pracownik in self.pracownicy)
+
+moje_zoo = ZOO()
+moje_zoo.dodaj_zwierze(pies)
+moje_zoo.dodaj_zwierze(krolik)
+moje_zoo.dodaj_pracownika(opiekun)
+moje_zoo.dodaj_pracownika(sprzatacz)
+moje_zoo.dodaj_pracownika(kasjer)
+
+
+print("\nPracownicy zoo:")
+print(moje_zoo.pokaz_pracownikow())
+
+print(opiekun.nakarm_zwierze(pies, 2))
+
+print(sprzatacz.sprzataj())
+
+print(kasjer.sprzedaj_bilet("Klient 1"))
