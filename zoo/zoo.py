@@ -2,14 +2,19 @@ from abc import ABC, abstractmethod
 
 
 class Zwierze(ABC):
-    def __init__(self, imie: str, wiek: int, waga: float, wzrost: float):
+    def __init__(self, imie: str, wiek: int, waga: float, wzrost: float, *args, **kwargs):
         self.imie = imie
         self.wiek = wiek
         self.waga = waga
         self.wzrost = wzrost
+        self.dodatkowe_info = kwargs  # Przechowuje dodatkowe informacje
 
     def __str__(self):
-        return f"{self.imie}, Wiek: {self.wiek} lat, Waga: {self.waga} kg, Wzrost: {self.wzrost} cm"
+        opis = f"{self.imie}, Wiek: {self.wiek} lat, Waga: {self.waga} kg, Wzrost: {self.wzrost} cm"
+        if self.dodatkowe_info:
+            dodatki = ", ".join(f"{k}: {v}" for k, v in self.dodatkowe_info.items())
+            opis += f" ({dodatki})"
+        return opis
 
     @abstractmethod
     def daj_glos(self):
@@ -22,110 +27,37 @@ class Zwierze_Ladowe(Zwierze):
         return f"{self.imie} biegnie z prędkością {szybkosc_biegu:.2f} km/h"
 
 
-class Zwierze_Latajace(Zwierze_Ladowe):
-    def __init__(self, imie: str, wiek: int, waga: float, wzrost: float, rozpietosc_skrzydel: float):
-        super().__init__(imie, wiek, waga, wzrost)
-        self.rozpietosc_skrzydel = rozpietosc_skrzydel
-
-    def lec(self):
-        szyb_lotu = (self.waga / 5) + (self.wzrost / 2)
-        return f"{self.imie} leci z prędkością {szyb_lotu:.2f} km/h"
-
-
-class Pies(Zwierze_Ladowe):
-    def daj_glos(self):
-        return "Hau hau"
-
-
-class Krolik(Zwierze_Ladowe):
-    def daj_glos(self):
-        return "Piiii"
-
-
-class Kot(Zwierze_Ladowe):
-    def daj_glos(self):
-        return "Miau"
-
-
-class Pelikan(Zwierze_Latajace):
-    def __init__(self, imie, wiek, waga, wzrost, rozpietosc_skrzydel):
-        super().__init__(imie, wiek, waga, wzrost, rozpietosc_skrzydel)
-
-    def daj_glos(self):
-        return "Blyyyyb"
-
-
-class Sikorka(Zwierze_Latajace):
-    def __init__(self, imie, wiek, waga, wzrost, rozpietosc_skrzydel):
-        super().__init__(imie, wiek, waga, wzrost, rozpietosc_skrzydel)
-
-    def daj_glos(self):
-        return "Ćwir"
-
-
-pies = Pies("Czika", 9, 10, 40)
-krolik = Krolik("Pabi", 7, 2, 20)
-kot = Kot("Szeszyr", 9, 5, 17)
-pelikan = Pelikan("Renia", 3, 8, 100, 1.9)
-sikorka = Sikorka("Sikorinda", 1, 0.11, 11.5, 21.0)
-
-print(pies.daj_glos(), pies)
-print(krolik.daj_glos(), krolik)
-print(kot.daj_glos(), kot)
-
-print(pies.biegnij())
-print(krolik.biegnij())
-print(kot.biegnij())
-
-print(pelikan.daj_glos(), pelikan)
-print(pelikan.lec())
-
-print(sikorka.daj_glos(), sikorka)
-print(sikorka.lec())
-
-
-class ZOO:
-    def __init__(self):
-        self.zwierzeta = []
-
-    def dodaj_zwierze(self, zwierze: Zwierze):
-        self.zwierzeta.append(zwierze)
-
-    def pokaz_zwierzeta(self):
-        if not self.zwierzeta:
-            return "Brak zwierząt"
-        return "\n".join(str(zwierze) for zwierze in self.zwierzeta)
-
-
-moje_zoo = ZOO()
-moje_zoo.dodaj_zwierze(pies)
-moje_zoo.dodaj_zwierze(kot)
-moje_zoo.dodaj_zwierze(pelikan)
-moje_zoo.dodaj_zwierze(sikorka)
-
-print("\nZwierzęta w zoo:")
-print(moje_zoo.pokaz_zwierzeta())
-
-
 class Pracownik(ABC):
-    def __init__(self, imie: str, nazwisko: str):
+    def __init__(self, imie: str, nazwisko: str, *args, **kwargs):
         self.imie = imie
         self.nazwisko = nazwisko
+        self.dodatkowe_info = kwargs
+# Dzieki kwargs mozemy dodc dodatkowe info jak np. staż pracy, specjalizację itd.
 
     def __str__(self):
-        return f"{self.imie} {self.nazwisko} - {self.__class__.__name__}"
+        opis = f"{self.imie} {self.nazwisko} - {self.__class__.__name__}"
+        if self.dodatkowe_info:
+            dodatki = ", ".join(f"{k}: {v}" for k, v in self.dodatkowe_info.items())
+            opis += f" ({dodatki})"
+        return opis
 
     @abstractmethod
     def wykonaj_prace(self):
         pass
 
+    @abstractmethod
+    def daj_opis_pracy(self):
+        pass
+
 
 class OpiekunZwierzat(Pracownik):
     def wykonaj_prace(self):
-        return "Opiekuję się zwierzętami"
+        return "Opiekuję się zwierzętami."
+
+    def daj_opis_pracy(self):
+        return "Zajmuje się karmieniem i dbaniem o zwierzęta w zoo."
 
     def nakarm_zwierze(self, zwierze, ilosc_jedzenia):
-        # Każde 1 kg jedzenia zwiększa wagę o 0.1 kg
         zwierze.waga += ilosc_jedzenia * 0.1
         return f"{self.imie} nakarmił {zwierze.imie}, nowa waga: {zwierze.waga:.2f} kg."
 
@@ -134,13 +66,19 @@ class Sprzatacz(Pracownik):
     def wykonaj_prace(self):
         return "Sprzątam zoo."
 
+    def daj_opis_pracy(self):
+        return "Odpowiada za czystość w zoo, sprząta klatki i alejki."
+
     def sprzataj(self):
         return f"{self.imie} sprząta zoo."
 
 
 class Kasjer(Pracownik):
     def wykonaj_prace(self):
-        return "Zarzadzam zoo."
+        return "Sprzedaję bilety."
+
+    def daj_opis_pracy(self):
+        return "Sprzedaje bilety odwiedzającym zoo."
 
     def sprzedaj_bilet(self, klient):
         return f"{self.imie} sprzedał bilet dla {klient}."
@@ -148,66 +86,45 @@ class Kasjer(Pracownik):
 
 class Dyrektor(Pracownik):
     def wykonaj_prace(self):
-        return "Sprzedaję bilety."
+        return "Zarządzam zoo."
+
+    def daj_opis_pracy(self):
+        return "Kieruje całą działalnością zoo, nadzoruje pracowników."
 
     def zarzadzaj(self):
-        return f"{self.imie} zarzadza zoo."
+        return f"{self.imie} zarządza zoo."
 
 
 class Weterynarz(Pracownik):
     def wykonaj_prace(self):
         return "Leczę zwierzęta."
 
+    def daj_opis_pracy(self):
+        return "Opiekuje się zdrowiem zwierząt, przeprowadza badania i leczenie."
+
     def lecz(self):
         return f"{self.imie} leczy zwierzęta."
 
 
-opiekun = OpiekunZwierzat("Julian", "Golemowski")
-sprzatacz = Sprzatacz("Kazimierz", "Nowak")
-kasjer = Kasjer("Kazia", "Wiśniewska")
-dyrektor = Dyrektor("Wojciech", "Kocur")
-weterynarz = Weterynarz("Weronika", "Stonoga")
+# Dzieki kwargs mamy tu juz dodatkowe dane jak np. specjalizacja, albo zmiana pracy
+opiekun = OpiekunZwierzat("Julian", "Golemowski", staz=5, specjalizacja="Ssaki")
+sprzatacz = Sprzatacz("Kazimierz", "Nowak", staz=3)
+kasjer = Kasjer("Kazia", "Wiśniewska", zmiana="Poranna")
+dyrektor = Dyrektor("Wojciech", "Kocur", doswiadczenie=15)
+weterynarz = Weterynarz("Weronika", "Stonoga", specjalizacja="Ssaki")
 
+# Tworzenie zwierząt z dodatkowymi danymi
+pies = Zwierze_Ladowe("Czika", 9, 10, 40, rasa="Labrador", ulubiony_posilek="Kości")
+krolik = Zwierze_Ladowe("Pabi", 7, 2, 20, ulubiona_zabawa="Kopanie norek")
 
-class ZOO:
-    def __init__(self):
-        self.zwierzeta = []
-        self.pracownicy = []
+pracownicy = [opiekun, sprzatacz, kasjer, dyrektor, weterynarz]
 
-    def dodaj_zwierze(self, zwierze):
-        self.zwierzeta.append(zwierze)
+print("\nOpisy pracowników:")
+for pracownik in pracownicy:
+    print(f"{pracownik}: {pracownik.daj_opis_pracy()}")
 
-    def dodaj_pracownika(self, pracownik):
-        self.pracownicy.append(pracownik)
+zwierzeta = [pies, krolik]
 
-    def pokaz_zwierzeta(self):
-        if not self.zwierzeta:
-            return "Brak zwierząt"
-        return "\n".join(str(zwierze) for zwierze in self.zwierzeta)
-
-    def pokaz_pracownikow(self):
-        if not self.pracownicy:
-            return "Brak pracowników"
-        return "\n".join(str(pracownik) for pracownik in self.pracownicy)
-
-
-moje_zoo = ZOO()
-moje_zoo.dodaj_zwierze(pies)
-moje_zoo.dodaj_zwierze(krolik)
-moje_zoo.dodaj_pracownika(opiekun)
-moje_zoo.dodaj_pracownika(sprzatacz)
-moje_zoo.dodaj_pracownika(kasjer)
-
-
-print("\nPracownicy zoo:")
-print(moje_zoo.pokaz_pracownikow())
-
-print(opiekun.nakarm_zwierze(pies, 2))
-
-print(sprzatacz.sprzataj())
-
-print(kasjer.sprzedaj_bilet("Klient 1"))
-
-print(dyrektor.zarzadzaj())
-
-print(weterynarz.lecz())
+print("\nZwierzęta w zoo:")
+for zwierze in zwierzeta:
+    print(zwierze)
