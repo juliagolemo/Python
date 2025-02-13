@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+from datetime import datetime
 
 class Zwierze(ABC):
     def __init__(self, imie: str, wiek: int, waga: float, wzrost: float, *args, **kwargs):
@@ -7,7 +7,7 @@ class Zwierze(ABC):
         self.wiek = wiek
         self.waga = waga
         self.wzrost = wzrost
-        self.dodatkowe_info = kwargs  # Przechowuje dodatkowe informacje
+        self.dodatkowe_info = kwargs  # Dodatkowe info
 
     def __str__(self):
         opis = f"{self.imie}, Wiek: {self.wiek} lat, Waga: {self.waga} kg, Wzrost: {self.wzrost} cm"
@@ -22,9 +22,37 @@ class Zwierze(ABC):
 
 
 class Zwierze_Ladowe(Zwierze):
+    def __init__(self, imie, wiek, waga, wzrost, *args, **kwargs):
+        super().__init__(imie, wiek, waga, wzrost, *args, **kwargs)
+
     def biegnij(self):
         szybkosc_biegu = (self.waga / 10) + (self.wzrost / 5)
         return f"{self.imie} biegnie z prędkością {szybkosc_biegu:.2f} km/h"
+
+
+class Zwierze_Latajace(Zwierze_Ladowe):
+    def __init__(self, imie, wiek, waga, wzrost, rozpietosc_skrzydel, *args, **kwargs):
+        super().__init__(imie, wiek, waga, wzrost, *args, **kwargs)
+        self.rozpietosc_skrzydel = rozpietosc_skrzydel
+
+    def lec(self):
+        szyb_lotu = (self.waga / 5) + (self.wzrost / 2)
+        return f"{self.imie} leci z prędkością {szyb_lotu:.2f} km/h"
+
+
+class Pies(Zwierze_Ladowe):
+    def daj_glos(self):
+        return "Hau hau"
+
+
+class Kot(Zwierze_Ladowe):
+    def daj_glos(self):
+        return "Miau"
+
+
+class Pelikan(Zwierze_Latajace):
+    def daj_glos(self):
+        return "Blyyyyb"
 
 
 class Pracownik(ABC):
@@ -32,7 +60,6 @@ class Pracownik(ABC):
         self.imie = imie
         self.nazwisko = nazwisko
         self.dodatkowe_info = kwargs
-# Dzieki kwargs mozemy dodc dodatkowe info jak np. staż pracy, specjalizację itd.
 
     def __str__(self):
         opis = f"{self.imie} {self.nazwisko} - {self.__class__.__name__}"
@@ -45,17 +72,10 @@ class Pracownik(ABC):
     def wykonaj_prace(self):
         pass
 
-    @abstractmethod
-    def daj_opis_pracy(self):
-        pass
-
 
 class OpiekunZwierzat(Pracownik):
     def wykonaj_prace(self):
         return "Opiekuję się zwierzętami."
-
-    def daj_opis_pracy(self):
-        return "Zajmuje się karmieniem i dbaniem o zwierzęta w zoo."
 
     def nakarm_zwierze(self, zwierze, ilosc_jedzenia):
         zwierze.waga += ilosc_jedzenia * 0.1
@@ -66,9 +86,6 @@ class Sprzatacz(Pracownik):
     def wykonaj_prace(self):
         return "Sprzątam zoo."
 
-    def daj_opis_pracy(self):
-        return "Odpowiada za czystość w zoo, sprząta klatki i alejki."
-
     def sprzataj(self):
         return f"{self.imie} sprząta zoo."
 
@@ -76,9 +93,6 @@ class Sprzatacz(Pracownik):
 class Kasjer(Pracownik):
     def wykonaj_prace(self):
         return "Sprzedaję bilety."
-
-    def daj_opis_pracy(self):
-        return "Sprzedaje bilety odwiedzającym zoo."
 
     def sprzedaj_bilet(self, klient):
         return f"{self.imie} sprzedał bilet dla {klient}."
@@ -88,9 +102,6 @@ class Dyrektor(Pracownik):
     def wykonaj_prace(self):
         return "Zarządzam zoo."
 
-    def daj_opis_pracy(self):
-        return "Kieruje całą działalnością zoo, nadzoruje pracowników."
-
     def zarzadzaj(self):
         return f"{self.imie} zarządza zoo."
 
@@ -99,32 +110,70 @@ class Weterynarz(Pracownik):
     def wykonaj_prace(self):
         return "Leczę zwierzęta."
 
-    def daj_opis_pracy(self):
-        return "Opiekuje się zdrowiem zwierząt, przeprowadza badania i leczenie."
-
     def lecz(self):
         return f"{self.imie} leczy zwierzęta."
 
 
-# Dzieki kwargs mamy tu juz dodatkowe dane jak np. specjalizacja, albo zmiana pracy
+class ZOO:
+    def __init__(self):
+        self.zwierzeta = []
+        self.pracownicy = []
+
+    def dodaj_zwierze(self, zwierze):
+        self.zwierzeta.append(zwierze)
+
+    def dodaj_pracownika(self, pracownik):
+        self.pracownicy.append(pracownik)
+
+    def pokaz_zwierzeta(self):
+        if not self.zwierzeta:
+            return "Brak zwierząt"
+        return "\n".join(str(zwierze) for zwierze in self.zwierzeta)
+
+    def pokaz_pracownikow(self):
+        if not self.pracownicy:
+            return "Brak pracowników"
+        return "\n".join(str(pracownik) for pracownik in self.pracownicy)
+
+
+class Kasa:
+    def __init__(self, kasjer):
+        self.kasjer = kasjer
+
+    def kup_bilet(self, klient):
+        teraz = datetime.now().hour
+
+        if 8 <= teraz < 19:
+            return f"{self.kasjer.imie} sprzedał bilet dla {klient}."
+        else:
+            return "Kasa jest zamknięta. Można kupić bilet od 8:00 do 19:00."
+
+
+pies = Pies("Czika", 9, 10, 40, rasa="Kundelek", ulubiony_posilek="Mieso")
+kot = Kot("Szeszyr", 9, 5, 17, ulubiona_zabawa="Polowanie")
+pelikan = Pelikan("Renia", 3, 8, 100, 1.9, kraj_pochodzenia="Brazylia")
+
 opiekun = OpiekunZwierzat("Julian", "Golemowski", staz=5, specjalizacja="Ssaki")
 sprzatacz = Sprzatacz("Kazimierz", "Nowak", staz=3)
 kasjer = Kasjer("Kazia", "Wiśniewska", zmiana="Poranna")
 dyrektor = Dyrektor("Wojciech", "Kocur", doswiadczenie=15)
 weterynarz = Weterynarz("Weronika", "Stonoga", specjalizacja="Ssaki")
 
-# Tworzenie zwierząt z dodatkowymi danymi
-pies = Zwierze_Ladowe("Czika", 9, 10, 40, rasa="Labrador", ulubiony_posilek="Kości")
-krolik = Zwierze_Ladowe("Pabi", 7, 2, 20, ulubiona_zabawa="Kopanie norek")
+moje_zoo = ZOO()
+moje_zoo.dodaj_zwierze(pies)
+moje_zoo.dodaj_zwierze(kot)
+moje_zoo.dodaj_zwierze(pelikan)
+moje_zoo.dodaj_pracownika(opiekun)
+moje_zoo.dodaj_pracownika(sprzatacz)
+moje_zoo.dodaj_pracownika(kasjer)
 
-pracownicy = [opiekun, sprzatacz, kasjer, dyrektor, weterynarz]
+kasa = Kasa(kasjer)
 
-print("\nOpisy pracowników:")
-for pracownik in pracownicy:
-    print(f"{pracownik}: {pracownik.daj_opis_pracy()}")
-
-zwierzeta = [pies, krolik]
+print("\nPracownicy zoo:")
+print(moje_zoo.pokaz_pracownikow())
 
 print("\nZwierzęta w zoo:")
-for zwierze in zwierzeta:
-    print(zwierze)
+print(moje_zoo.pokaz_zwierzeta())
+
+print("\nKupowanie biletu:")
+print(kasa.kup_bilet("Klient 1"))
