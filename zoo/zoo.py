@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 
+
 class Zwierze(ABC):
     def __init__(self, imie: str, wiek: int, waga: float, wzrost: float, *args, **kwargs):
         self.imie = imie
@@ -12,7 +13,8 @@ class Zwierze(ABC):
     def __str__(self):
         opis = f"{self.imie}, Wiek: {self.wiek} lat, Waga: {self.waga} kg, Wzrost: {self.wzrost} cm"
         if self.dodatkowe_info:
-            dodatki = ", ".join(f"{k}: {v}" for k, v in self.dodatkowe_info.items())
+            dodatki = ", ".join(f"{k}: {v}" for k,
+                                v in self.dodatkowe_info.items())
             opis += f" ({dodatki})"
         return opis
 
@@ -64,18 +66,29 @@ class Pracownik(ABC):
     def __str__(self):
         opis = f"{self.imie} {self.nazwisko} - {self.__class__.__name__}"
         if self.dodatkowe_info:
-            dodatki = ", ".join(f"{k}: {v}" for k, v in self.dodatkowe_info.items())
+            dodatki = ", ".join(f"{k}: {v}" for k,
+                                v in self.dodatkowe_info.items())
             opis += f" ({dodatki})"
         return opis
 
+
+class Pracownik(ABC):
     @abstractmethod
-    def wykonaj_prace(self):
+    def wykonaj_prace(self, *args, **kwargs):
         pass
 
 
 class OpiekunZwierzat(Pracownik):
+    def __init__(self, imie, nazwisko, staz, specjalizacja):
+        super().__init__(imie, nazwisko)
+        self.staz = staz
+        self.specjalizacja = specjalizacja
+
     def wykonaj_prace(self):
         return "Opiekuję się zwierzętami."
+
+    def nakarm_zwierze(self, zwierze, ilosc_jedzenia):
+        return f"{self.imie} {self.nazwisko} nakarmił(a) {zwierze} porcją {ilosc_jedzenia} kg jedzenia."
 
     def nakarm_zwierze(self, zwierze, ilosc_jedzenia):
         zwierze.waga += ilosc_jedzenia * 0.1
@@ -83,35 +96,50 @@ class OpiekunZwierzat(Pracownik):
 
 
 class Sprzatacz(Pracownik):
+    def __init__(self, imie, nazwisko, staz):
+        super().__init__(imie, nazwisko)
+        self.staz = staz
+
     def wykonaj_prace(self):
         return "Sprzątam zoo."
 
-    def sprzataj(self):
-        return f"{self.imie} sprząta zoo."
-
+    def sprzataj(self, miejsce, czas):
+        return f"{self.imie} {self.nazwisko} sprząta {miejsce} przez {czas} minut."
 
 class Kasjer(Pracownik):
+    def __init__(self, imie, nazwisko, zmiana):
+        super().__init__(imie, nazwisko)
+        self.zmiana = zmiana
+
     def wykonaj_prace(self):
         return "Sprzedaję bilety."
 
-    def sprzedaj_bilet(self, klient):
-        return f"{self.imie} sprzedał bilet dla {klient}."
+    def sprzedaj_bilet(self, klient, cena):
+        return f"{self.imie} {self.nazwisko} sprzedał(a) bilet dla {klient} za {cena} zł."
 
 
 class Dyrektor(Pracownik):
+    def __init__(self, imie, nazwisko, doswiadczenie):
+        super().__init__(imie, nazwisko)
+        self.doswiadczenie = doswiadczenie
+
     def wykonaj_prace(self):
         return "Zarządzam zoo."
 
-    def zarzadzaj(self):
-        return f"{self.imie} zarządza zoo."
+    def zarzadzaj(self, dzial, decyzja):
+        return f"{self.imie} {self.nazwisko} zarządza działem {dzial} i podjął decyzję: {decyzja}."
 
 
 class Weterynarz(Pracownik):
+    def __init__(self, imie, nazwisko, specjalizacja):
+        super().__init__(imie, nazwisko)
+        self.specjalizacja = specjalizacja
+
     def wykonaj_prace(self):
         return "Leczę zwierzęta."
 
-    def lecz(self):
-        return f"{self.imie} leczy zwierzęta."
+    def lecz(self, zwierze, choroba):
+        return f"{self.imie} {self.nazwisko}, specjalista od {self.specjalizacja}, leczy {zwierze} na {choroba}."
 
 
 class ZOO:
@@ -152,6 +180,58 @@ class Kasa:
 pies = Pies("Czika", 9, 10, 40, rasa="Kundelek", ulubiony_posilek="Mieso")
 kot = Kot("Szeszyr", 9, 5, 17, ulubiona_zabawa="Polowanie")
 pelikan = Pelikan("Renia", 3, 8, 100, 1.9, kraj_pochodzenia="Brazylia")
+
+from abc import ABC, abstractmethod
+
+class Pracownik(ABC):
+    def __init__(self, imie, nazwisko):
+        self.imie = imie
+        self.nazwisko = nazwisko
+
+    @abstractmethod
+    def wykonaj_prace(self, *args, **kwargs):
+        pass
+
+class OpiekunZwierzat(Pracownik):
+    def __init__(self, imie, nazwisko, staz, specjalizacja):
+        super().__init__(imie, nazwisko)
+        self.staz = staz
+        self.specjalizacja = specjalizacja
+
+    def wykonaj_prace(self):
+        print(f"{self.imie} {self.nazwisko} opiekuje się zwierzętami.")
+
+class Sprzatacz(Pracownik):
+    def __init__(self, imie, nazwisko, staz):
+        super().__init__(imie, nazwisko)
+        self.staz = staz
+
+    def wykonaj_prace(self):
+        print(f"{self.imie} {self.nazwisko} sprząta zoo.")
+
+class Kasjer(Pracownik):
+    def __init__(self, imie, nazwisko, zmiana):
+        super().__init__(imie, nazwisko)
+        self.zmiana = zmiana
+
+    def wykonaj_prace(self):
+        print(f"{self.imie} {self.nazwisko} pracuje na kasie w zmianie {self.zmiana}.")
+
+class Dyrektor(Pracownik):
+    def __init__(self, imie, nazwisko, doswiadczenie):
+        super().__init__(imie, nazwisko)
+        self.doswiadczenie = doswiadczenie
+
+    def wykonaj_prace(self):
+        print(f"{self.imie} {self.nazwisko} zarządza zoo od {self.doswiadczenie} lat.")
+
+class Weterynarz(Pracownik):
+    def __init__(self, imie, nazwisko, specjalizacja):
+        super().__init__(imie, nazwisko)
+        self.specjalizacja = specjalizacja
+
+    def wykonaj_prace(self):
+        print(f"{self.imie} {self.nazwisko} leczy zwierzęta, specjalizacja: {self.specjalizacja}.")
 
 opiekun = OpiekunZwierzat("Julian", "Golemowski", staz=5, specjalizacja="Ssaki")
 sprzatacz = Sprzatacz("Kazimierz", "Nowak", staz=3)
