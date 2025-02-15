@@ -84,11 +84,8 @@ class OpiekunZwierzat(Pracownik):
         self.staz = staz
         self.specjalizacja = specjalizacja
 
-    def wykonaj_prace(self):
-        return "Opiekuję się zwierzętami."
-
-    def nakarm_zwierze(self, zwierze, ilosc_jedzenia):
-        return f"{self.imie} {self.nazwisko} nakarmił(a) {zwierze} porcją {ilosc_jedzenia} kg jedzenia."
+    def wykonaj_prace(self, zwierze, ilosc_jedzenia):
+        return self.nakarm_zwierze(zwierze=zwierze, ilosc_jedzenia=ilosc_jedzenia)
 
     def nakarm_zwierze(self, zwierze, ilosc_jedzenia):
         zwierze.waga += ilosc_jedzenia * 0.1
@@ -100,19 +97,20 @@ class Sprzatacz(Pracownik):
         super().__init__(imie, nazwisko)
         self.staz = staz
 
-    def wykonaj_prace(self):
-        return "Sprzątam zoo."
+    def wykonaj_prace(self, miejsce, czas):
+        return self.sprzataj(miejsce=miejsce, czas=czas)
 
     def sprzataj(self, miejsce, czas):
         return f"{self.imie} {self.nazwisko} sprząta {miejsce} przez {czas} minut."
+
 
 class Kasjer(Pracownik):
     def __init__(self, imie, nazwisko, zmiana):
         super().__init__(imie, nazwisko)
         self.zmiana = zmiana
 
-    def wykonaj_prace(self):
-        return "Sprzedaję bilety."
+    def wykonaj_prace(self, klient, cena):
+        return self.sprzedaj_bilet(klient=klient, cena=cena)
 
     def sprzedaj_bilet(self, klient, cena):
         return f"{self.imie} {self.nazwisko} sprzedał(a) bilet dla {klient} za {cena} zł."
@@ -123,8 +121,8 @@ class Dyrektor(Pracownik):
         super().__init__(imie, nazwisko)
         self.doswiadczenie = doswiadczenie
 
-    def wykonaj_prace(self):
-        return "Zarządzam zoo."
+    def wykonaj_prace(self, dzial, decyzja):
+        return self.zarzadzaj(dzial=dzial, decyzja=decyzja)
 
     def zarzadzaj(self, dzial, decyzja):
         return f"{self.imie} {self.nazwisko} zarządza działem {dzial} i podjął decyzję: {decyzja}."
@@ -136,7 +134,7 @@ class Weterynarz(Pracownik):
         self.specjalizacja = specjalizacja
 
     def wykonaj_prace(self):
-        return "Leczę zwierzęta."
+        return self.lecz(zwierze=Zwierze, choroba=choroba)
 
     def lecz(self, zwierze, choroba):
         return f"{self.imie} {self.nazwisko}, specjalista od {self.specjalizacja}, leczy {zwierze} na {choroba}."
@@ -181,7 +179,6 @@ pies = Pies("Czika", 9, 10, 40, rasa="Kundelek", ulubiony_posilek="Mieso")
 kot = Kot("Szeszyr", 9, 5, 17, ulubiona_zabawa="Polowanie")
 pelikan = Pelikan("Renia", 3, 8, 100, 1.9, kraj_pochodzenia="Brazylia")
 
-from abc import ABC, abstractmethod
 
 class Pracownik(ABC):
     def __init__(self, imie, nazwisko):
@@ -192,6 +189,7 @@ class Pracownik(ABC):
     def wykonaj_prace(self, *args, **kwargs):
         pass
 
+
 class OpiekunZwierzat(Pracownik):
     def __init__(self, imie, nazwisko, staz, specjalizacja):
         super().__init__(imie, nazwisko)
@@ -201,6 +199,7 @@ class OpiekunZwierzat(Pracownik):
     def wykonaj_prace(self):
         print(f"{self.imie} {self.nazwisko} opiekuje się zwierzętami.")
 
+
 class Sprzatacz(Pracownik):
     def __init__(self, imie, nazwisko, staz):
         super().__init__(imie, nazwisko)
@@ -208,6 +207,7 @@ class Sprzatacz(Pracownik):
 
     def wykonaj_prace(self):
         print(f"{self.imie} {self.nazwisko} sprząta zoo.")
+
 
 class Kasjer(Pracownik):
     def __init__(self, imie, nazwisko, zmiana):
@@ -217,6 +217,7 @@ class Kasjer(Pracownik):
     def wykonaj_prace(self):
         print(f"{self.imie} {self.nazwisko} pracuje na kasie w zmianie {self.zmiana}.")
 
+
 class Dyrektor(Pracownik):
     def __init__(self, imie, nazwisko, doswiadczenie):
         super().__init__(imie, nazwisko)
@@ -225,15 +226,19 @@ class Dyrektor(Pracownik):
     def wykonaj_prace(self):
         print(f"{self.imie} {self.nazwisko} zarządza zoo od {self.doswiadczenie} lat.")
 
+
 class Weterynarz(Pracownik):
     def __init__(self, imie, nazwisko, specjalizacja):
         super().__init__(imie, nazwisko)
         self.specjalizacja = specjalizacja
 
     def wykonaj_prace(self):
-        print(f"{self.imie} {self.nazwisko} leczy zwierzęta, specjalizacja: {self.specjalizacja}.")
+        print(
+            f"{self.imie} {self.nazwisko} leczy zwierzęta, specjalizacja: {self.specjalizacja}.")
 
-opiekun = OpiekunZwierzat("Julian", "Golemowski", staz=5, specjalizacja="Ssaki")
+
+opiekun = OpiekunZwierzat("Julian", "Golemowski",
+                          staz=5, specjalizacja="Ssaki")
 sprzatacz = Sprzatacz("Kazimierz", "Nowak", staz=3)
 kasjer = Kasjer("Kazia", "Wiśniewska", zmiana="Poranna")
 dyrektor = Dyrektor("Wojciech", "Kocur", doswiadczenie=15)
