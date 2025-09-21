@@ -40,7 +40,6 @@ print(osoba["imię"])  # Anna
 get - pobieranie wartości
 
 items() – zwraca pary (klucz, wartość)
-items() – zwraca pary (klucz, wartość)
 ## Inne przydatne metody:
 keys() – zwraca listę kluczy
 
@@ -58,8 +57,6 @@ Operacje union: (łączy elementy), intersection: (elementy wspólne)
 
 # Moduły i funkcje
 import x – importuje cały moduł
-
-from x import y – importuje konkretną funkcję/zmienną
 
 from x import y – importuje konkretną funkcję/zmienną
 
